@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Infrastructure.Repositories;
 public class BaseRepository<T> : IRepository<T> where T : BaseEntity
 {
-    private readonly FinPayContext _context;
+    protected readonly FinPayContext _context;
 
     public BaseRepository(FinPayContext context)
     {
@@ -33,6 +33,17 @@ public class BaseRepository<T> : IRepository<T> where T : BaseEntity
             .Set<T>()
             .FirstOrDefaultAsync(x => x.PublicId == publicId
                 && x.IsActive);
+    }
+
+    public async Task<T> AddAsync(T entity)
+    {
+        var obj = await _context
+            .Set<T>()
+            .AddAsync(entity);
+
+        await _context.SaveChangesAsync();
+
+        return obj.Entity;
     }
 
     public async Task<T> UpdateAsync(T entity)

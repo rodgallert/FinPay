@@ -8,15 +8,14 @@
 
 	<ItemGroup>
 		<None Remove="appsettings.Data.Development.json" />
-		<None Remove="appsettings.Data.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="appsettings.Data.Development.json">
+		<Content Include="appsettings.Infrastructure.Development.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<DependentUpon>appsettings.Data.json</DependentUpon>
+			<DependentUpon>appsettings.Infrastructure.json</DependentUpon>
 		</Content>
-		<Content Include="appsettings.Data.json">
+		<Content Include="appsettings.Infrastructure.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
