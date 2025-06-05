@@ -1,7 +1,6 @@
 ﻿using Domain.Interfaces.UseCases;
 using Domain.Options;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -32,7 +31,7 @@ public class AuthenticationUseCases : IAuthenticationUseCases
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Email, email),
-            new Claim(ClaimTypes.UserData, publicId.ToString())
+            new Claim(ClaimTypes.UserData, publicId.ToString()),
         };
 
         var tokenDescriptor = new SecurityTokenDescriptor

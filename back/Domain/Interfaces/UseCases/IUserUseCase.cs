@@ -1,7 +1,8 @@
 ﻿using Domain.DTO;
+using Domain.ViewModels;
 
 namespace Domain.Interfaces.UseCases;
 public interface IUserUseCase
 {
-    Task<UserDto> CreateUserAsync(UserDto userRequest);
+    Task<LoginViewModel> CreateUserAsync(UserDto userRequest);
 }

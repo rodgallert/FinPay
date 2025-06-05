@@ -3,6 +3,7 @@ using Domain.Entities;
 using Domain.Exceptions;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.UseCases;
+using Domain.ViewModels;
 
 namespace UseCases;
 public class UserUseCase : IUserUseCase
@@ -16,7 +17,7 @@ public class UserUseCase : IUserUseCase
         _authenticationUseCases = authenticationUseCases;
     }
 
-    public async Task<UserDto> CreateUserAsync(UserDto userRequest)
+    public async Task<LoginViewModel> CreateUserAsync(UserDto userRequest)
     {
         if (await userRepository.UserExistsAsync(userRequest.Email))
             throw new UnprocessableRequestException("User already registered.");
@@ -27,6 +28,6 @@ public class UserUseCase : IUserUseCase
 
         var token = _authenticationUseCases.GenerateToken(user.Email, user.PublicId);
 
-        return User.ToDto(user);
+        return LoginViewModel.FromModel(user, token);
     }
 }

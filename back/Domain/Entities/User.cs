@@ -34,15 +34,4 @@ public class User : BaseEntity
 
         return user;
     }
-
-    public static UserDto ToDto(User user)
-    {
-        return new UserDto
-        {
-            FirstName = user.FirstName,
-            LastName = user.LastName,
-            Email = user.Email,
-            PublicId = user.PublicId
-        };
-    }
 }
