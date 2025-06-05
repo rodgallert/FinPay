@@ -7,7 +7,7 @@ services:
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
             POSTGRES_DB: ${POSTGRES_DB}
         ports:
-            - "5432:5432"
+            - "${POSTGRES_PORT}:5432"
         volumes:
             - db_data:/var/lib/postgresql/data
         networks:
@@ -29,7 +29,7 @@ services:
             - ./back:/app/back
             - ~/.nuget/packages:/root/.nuget/packages
         ports:
-            - "5251:5251"
+            - "5000:5251"
         command: dotnet watch --project ./Application run --urls=http://0.0.0.0:5251
         environment:
             ASPNETCORE_ENVIRONMENT: Development
